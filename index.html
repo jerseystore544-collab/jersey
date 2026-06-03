@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>ExploreEyeOnline | FIFA World Cup 2026 Jerseys</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050505;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* =========================
+BACKGROUND
+========================= */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(255,215,0,.12), transparent 30%),
+                radial-gradient(circle at top right, rgba(139,0,0,.18), transparent 35%);
+    z-index: -1;
+}
+
+/* =========================
+NAVBAR (unchanged structure)
+========================= */
+.navbar-custom {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    z-index: 999;
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 30px;
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #FFD700;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: #FFD700;
+}
+
+.cart-btn {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #FFD700;
+}
+
+/* =========================
+HERO SECTION (refined)
+========================= */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.hero-wrapper {
+    width: 90%;
+    max-width: 1300px;
+    margin: auto;
+
+    /* Background Image */
+   /* background: url('1.png') center center/cover no-repeat;*/
+
+    border-radius: 40px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr;
+    min-height: 780px;
+    position: relative;
+}
+.side-accent {
+    background: linear-gradient(180deg, #FFD700, #FFB800, #8B0000);
+}
+
+.hero-content {
+    padding: 100px 70px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.hero-content span {
+    color: #FFD700;
+}
+
+.hero-content p {
+    font-size: 1.15rem;
+    color: #ddd;
+    line-height: 1.9;
+    max-width: 600px;
+}
+
+.hero-buttons {
+    margin-top: 35px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-gold {
+    background: #FFD700;
+    color: black;
+    font-weight: 700;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 50px;
+    transition: .3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255,215,0,.35);
+}
+
+.btn-outline-gold {
+    background: transparent;
+    border: 1px solid #FFD700;
+    color: #FFD700;
+    padding: 14px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.hero-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-image img {
+    width: 85%;
+    max-width: 520px;
+    transition: .5s;
+    filter: drop-shadow(0 0 40px rgba(255,215,0,.2));
+}
+
+.jersey-tag {
+    position: absolute;
+    top: 80px;
+    right: 70px;
+    background: rgba(255,255,255,.06);
+    padding: 15px 25px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+/* =========================
+ABOUT SECTION
+========================= */
+.about {
+    padding: 120px 8%;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 50px;
+    color: #FFD700;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 25px;
+}
+
+.about-card {
+    background: rgba(255,255,255,.04);
+    padding: 35px;
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,.08);
+    text-align: center;
+    transition: .3s;
+}
+
+.about-card:hover {
+    transform: translateY(-8px);
+    border-color: #FFD700;
+}
+
+.about-card i {
+    font-size: 2rem;
+    color: #FFD700;
+    margin-bottom: 20px;
+}
+
+.about-card h4 {
+    margin-bottom: 15px;
+}
+
+/* =========================
+PRODUCT GRID & CARDS (selectable sizes fixed)
+========================= */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.product-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 25px;
+    padding: 20px;
+    transition: .3s;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    border-color: #FFD700;
+}
+
+.product-card img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    background: #1a1a1a;
+}
+
+.grade-badge {
+    display: inline-block;
+    background: #FFD700;
+    color: black;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: .8rem;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 15px;
+}
+
+.size-title {
+    font-size: .9rem;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    color: #FFD700;
+    font-weight: 600;
+}
+
+.sizes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.sizes span {
+    padding: 8px 14px;
+    background: rgba(255,255,255,.08);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.sizes span:hover {
+    background: rgba(255,215,0,0.3);
+    transform: scale(1.02);
+}
+
+.sizes span.selected-size {
+    background: #FFD700;
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(255,215,0,0.5);
+}
+
+.cart-button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    background: #FFD700;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.cart-button:hover {
+    background: #ffed4a;
+    transform: translateY(-2px);
+}
+
+.cart-button:active {
+    transform: scale(0.97);
+}
+
+.special-box {
+    margin-top: 40px;
+    padding: 35px;
+    border-radius: 25px;
+    background: rgba(255,215,0,.08);
+    border: 1px solid rgba(255,215,0,.3);
+}
+
+.stock-box {
+    background: rgba(255,255,255,.04);
+}
+
+/* =========================
+CONTACT SECTION
+========================= */
+.contact-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.contact-item {
+    background: rgba(255,255,255,.04);
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: #FFD700;
+}
+
+/* =========================
+CART SIDEBAR
+========================= */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    width: 400px;
+    height: 100vh;
+    background: #0a0a0a;
+    z-index: 2000;
+    padding: 25px;
+    transition: .4s;
+    overflow-y: auto;
+    border-left: 1px solid rgba(255,215,0,.3);
+    box-shadow: -5px 0 30px rgba(0,0,0,0.8);
+}
+
+.cart-sidebar.active {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255,215,0,.2);
+    padding-bottom: 15px;
+}
+
+.cart-header button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cart-header button:hover {
+    color: #FFD700;
+}
+
+.cart-item {
+    padding: 15px;
+    border-radius: 15px;
+    background: rgba(255,255,255,.05);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.cart-item-size {
+    font-size: 0.8rem;
+    color: #FFD700;
+}
+
+.cart-item-price {
+    font-weight: 600;
+    color: #FFD700;
+}
+
+.remove-item {
+    background: rgba(255,80,80,0.2);
+    border: none;
+    color: #ff8888;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: 0.2s;
+}
+
+.remove-item:hover {
+    background: rgba(255,80,80,0.5);
+    color: white;
+}
+
+.cart-footer {
+    margin-top: 30px;
+    border-top: 1px solid rgba(255,215,0,.2);
+    padding-top: 20px;
+}
+
+.cart-total {
+    font-size: 1.5rem;
+    color: #FFD700;
+    margin-bottom: 20px;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 15px;
+    background: #FFD700;
+    border: none;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.checkout-btn:hover {
+    background: #ffed4a;
+    transform: translateY(-2px);
+}
+
+/* =========================
+FOOTER
+========================= */
+footer {
+    text-align: center;
+    padding: 70px 20px;
+    border-top: 1px solid rgba(255,255,255,.1);
+    margin-top: 100px;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+@media(max-width: 992px) {
+    .hero-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .side-accent {
+        display: none;
+    }
+    .hero-content {
+        padding: 60px 30px;
+        text-align: center;
+    }
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    .hero-image {
+        padding-bottom: 50px;
+    }
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    .menu-toggle {
+        display: block;
+    }
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .section-title {
+        font-size: 2rem;
+        text-align: center;
+    }
+    .product-card img {
+        height: 260px;
+    }
+}
+
+@media(max-width: 480px) {
+    .navbar-custom {
+        padding: 12px 20px;
+    }
+    .logo {
+        font-size: 1.2rem;
+    }
+    .cart-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    .contact-item {
+        padding: 18px;
+    }
+    .special-box {
+        padding: 20px;
+    }
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR (exactly as provided) -->
+<nav class="navbar-custom">
+    <div class="logo">ExploreEyeOnline</div>
+    <div class="nav-links">
+        <a href="#">HOME</a>
+        <a href="#products">SHOP</a>
+        <a href="#about">ABOUT US</a>
+        <a href="#contact">CONTACT</a>
+        <a href="#" id="cartIcon"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-wrapper">
+        <div class="side-accent"></div>
+        <div class="hero-content">
+            <h1>FIFA WORLD CUP <span>2026</span> COLLECTION</h1>
+            <p>Premium Player Grade and A+ Grade football jerseys for passionate fans across Nepal. Represent your nation. Wear the passion. Own the game.</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn-gold">Explore Collection</a>
+                <a href="#about" class="btn-outline-gold">About Us</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img id="heroJersey" src="shsf.JPG" alt="Jersey">
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="about">
+    <h2 class="section-title">Why ExploreEyeOnline?</h2>
+    <div class="about-grid">
+        <div class="about-card"><i class="fas fa-shirt"></i><h4>Premium Quality</h4><p>Player Grade & A+ Grade jerseys.</p></div>
+        <div class="about-card"><i class="fas fa-truck"></i><h4>Delivery Nepal</h4><p>Fast shipping all over Nepal.</p></div>
+        <div class="about-card"><i class="fas fa-money-bill-wave"></i><h4>Cash On Delivery</h4><p>Safe and easy payment options.</p></div>
+        <div class="about-card"><i class="fas fa-headset"></i><h4>Customer Support</h4><p>Quick assistance whenever needed.</p></div>
+    </div>
+</section>
+
+<!-- PRODUCTS SECTION (with fully selectable sizes) -->
+<section id="products" class="about">
+    <h2 class="section-title">Player Grade Jerseys</h2>
+    <div class="product-grid" id="playerGradeGrid"></div>
+
+    <div class="special-box">
+        <h3>Coming Soon</h3>
+        <p>Argentina Away · Spain Away</p>
+    </div>
+
+    <div class="special-box stock-box">
+        <h3>Currently Out Of Stock</h3>
+        <p>Brazil Home · Brazil Away · France Home · France Away</p>
+    </div>
+
+    <h2 class="section-title mt-5">A+ Grade Jerseys</h2>
+    <div class="product-grid" id="aPlusGrid"></div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="about">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-box">
+        <div class="contact-item"><i class="fas fa-envelope"></i><span>exploreeyeonline@gmail.com</span></div>
+        <div class="contact-item"><i class="fab fa-whatsapp"></i><span>WhatsApp Support</span></div>
+        <div class="contact-item"><i class="fab fa-instagram"></i><span>Instagram</span></div>
+        <div class="contact-item"><i class="fab fa-facebook"></i><span>Facebook</span></div>
+        <div class="contact-item"><i class="fab fa-tiktok"></i><span>TikTok</span></div>
+    </div>
+</section>
+
+<!-- CART SIDEBAR -->
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3>Your Cart</h3>
+        <button id="closeCartBtn">✕</button>
+    </div>
+    <div id="cartItemsList"></div>
+    <div class="cart-footer">
+        <div class="cart-total" id="cartTotal">NRS 0</div>
+        <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+    </div>
+</div>
+
+<footer>
+    <h3>ExploreEyeOnline</h3>
+    <p>Premium FIFA World Cup Jerseys Nepal</p>
+    <p>© 2026 ExploreEyeOnline</p>
+</footer>
+<div id="checkoutModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:9999;justify-content:center;align-items:center;">
+
+<div style="background:#111;padding:25px;border-radius:20px;width:90%;max-width:500px;">
+
+<h2 style="color:#FFD700;">Checkout</h2>
+
+<form action="https://api.web3forms.com/submit" method="POST">
+
+<input type="hidden" name="access_key" value="e8b28cdc-94f1-45a2-83cd-170cef628f18">
+
+<input type="hidden" id="orderDetails" name="message">
+
+<input type="text" name="name" placeholder="Full Name" required style="width:100%;padding:10px;margin:10px 0;">
+
+<input type="email" name="email" placeholder="Email Address" required style="width:100%;padding:10px;margin:10px 0;">
+
+<input type="text" name="mobile" placeholder="Mobile Number" required style="width:100%;padding:10px;margin:10px 0;">
+
+<textarea name="address" placeholder="Delivery Address" required style="width:100%;padding:10px;margin:10px 0;"></textarea>
+
+<button type="submit" style="width:100%;padding:12px;background:#FFD700;border:none;border-radius:30px;">
+Place Order
+</button>
+
+</form>
+
+<button onclick="closeCheckoutModal()" style="width:100%;padding:12px;margin-top:10px;">
+Cancel
+</button>
+
+</div>
+</div>
+<script>
+    // ========================
+    // PRODUCT DATA
+    // ========================
+    const playerGradeProducts = [
+        { name: "Portugal Home", price: 1999, grade: "Player Grade", img: "php.jpeg", kidsSizes: ["S","M","L"], adultSizes: ["S","M","L","XL","XXL"] },
+        { name: "Argentina Home", price: 1999, grade: "Player Grade", img: "ahp.jpeg", kidsSizes: ["S","M","L"], adultSizes: ["S","M","L","XL","XXL"] },
+        { name: "Spain Home", price: 1999, grade: "Player Grade", img: "shp.jpeg", kidsSizes: ["S","M","L"], adultSizes: ["S","M","L","XL","XXL"] },
+        { name: "Germany Home", price: 1999, grade: "Player Grade", img: "ghp.jpeg", kidsSizes: ["S","M","L"], adultSizes: ["S","M","L","XL","XXL"] },
+        { name: "England Home", price: 1999, grade: "Player Grade", img: "ehp.jpeg", kidsSizes: ["S","M","L"], adultSizes: ["S","M","L","XL","XXL"] }
+    ];
+
+    const aPlusProducts = [
+        { name: "Argentina Home", price: 1299, grade: "A+", img: "ah.jpeg", sizes: ["S","M","L","XL"] },
+        { name: "Argentina Away", price: 1299, grade: "A+", img: "aa.jpeg", sizes: ["S","M","L","XL"] },
+        { name: "Portugal Home", price: 1299, grade: "A+", img: "ph.jpeg", sizes: ["S","M","L","XL"] },
+        { name: "Portugal Away Black", price: 1299, grade: "A+", img: "pa.jpeg", sizes: ["S","M","L","XL"] },
+        { name: "Brazil Home", price: 1299, grade: "A+", img: "ba.jpeg", sizes: ["S","M","L","XL"] },
+        { name: "Brazil Away", price: 1299, grade: "A+", img: "ba1.jpeg", sizes: ["S","M","L","XL"] },
+        { name: "Spain Home", price: 1299, grade: "A+", img: "sh.jpeg", sizes: ["S","M","L","XL"] },
+        { name: "England Home", price: 1299, grade: "A+", img: "eh.jpg", sizes: ["S","M","L","XL"] },
+        { name: "Germany Home", price: 1299, grade: "A+", img: "gm.jpeg", sizes: ["S","M","L","XL"] },
+    ];
+
+    // Cart array: { id, name, size, price }
+    let cart = [];
+
+    // Helper: render products
+    function renderProductCards() {
+        const playerContainer = document.getElementById('playerGradeGrid');
+        const aplusContainer = document.getElementById('aPlusGrid');
+        
+        // Player Grade
+        playerContainer.innerHTML = playerGradeProducts.map((prod, idx) => `
+            <div class="product-card" data-product-idx="${idx}" data-product-name="${prod.name}" data-price="${prod.price}">
+                <img src="${prod.img}" alt="${prod.name}">
+                <h3>${prod.name}</h3>
+                <div class="grade-badge">${prod.grade}</div>
+                <div class="price">NRS ${prod.price}</div>
+                <div class="size-title">👕 Kids Sizes</div>
+                <div class="sizes kids-sizes">
+                    ${prod.kidsSizes.map(sz => `<span data-size="${sz}">${sz}</span>`).join('')}
+                </div>
+                <div class="size-title">👕 Adult Sizes</div>
+                <div class="sizes adult-sizes">
+                    ${prod.adultSizes.map(sz => `<span data-size="${sz}">${sz}</span>`).join('')}
+                </div>
+                <button class="cart-button add-to-cart">Add To Cart</button>
+            </div>
+        `).join('');
+
+        // A+ Grade
+        aplusContainer.innerHTML = aPlusProducts.map((prod, idx) => `
+            <div class="product-card" data-product-idx="a${idx}" data-product-name="${prod.name}" data-price="${prod.price}">
+                <img src="${prod.img}" alt="${prod.name}">
+                <h3>${prod.name}</h3>
+                <div class="grade-badge">${prod.grade}</div>
+                <div class="price">NRS ${prod.price}</div>
+                <div class="size-title">Select Size</div>
+                <div class="sizes">
+                    ${prod.sizes.map(sz => `<span data-size="${sz}">${sz}</span>`).join('')}
+                </div>
+                <button class="cart-button add-to-cart">Add To Cart</button>
+            </div>
+        `).join('');
+
+        // Attach size selection & cart events
+        attachSizeSelectionEvents();
+        attachCartEvents();
+    }
+
+    // Size selection logic (toggle selected class, store selected size on card)
+    function attachSizeSelectionEvents() {
+        document.querySelectorAll('.product-card .sizes span').forEach(span => {
+            span.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const parentCard = span.closest('.product-card');
+                // Remove selected class from all size spans in this card
+                parentCard.querySelectorAll('.sizes span').forEach(s => s.classList.remove('selected-size'));
+                span.classList.add('selected-size');
+                // Store selected size on card dataset
+                const selectedSize = span.getAttribute('data-size');
+                parentCard.dataset.selectedSize = selectedSize;
+            });
+        });
+    }
+
+    // Add to cart functionality with size validation
+    function attachCartEvents() {
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const card = btn.closest('.product-card');
+                const productName = card.querySelector('h3').innerText;
+                const priceText = card.querySelector('.price').innerText;
+                const price = parseInt(priceText.replace('NRS ', ''));
+                
+                // Find selected size
+                let selectedSize = card.dataset.selectedSize;
+                if (!selectedSize) {
+                    // Check if any size span has selected class
+                    const selectedSpan = card.querySelector('.sizes span.selected-size');
+                    if (selectedSpan) {
+                        selectedSize = selectedSpan.getAttribute('data-size');
+                    }
+                }
+                
+                if (!selectedSize) {
+                    alert('⚠️ Please select a size before adding to cart!');
+                    return;
+                }
+                
+                // Add to cart
+                cart.push({
+                    id: Date.now() + Math.random(),
+                    name: productName,
+                    size: selectedSize,
+                    price: price
+                });
+                
+                updateCartUI();
+                // Open cart sidebar
+                document.getElementById('cartSidebar').classList.add('active');
+                
+                // Visual feedback
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => { btn.style.transform = ''; }, 150);
+            });
+        });
+    }
+
+    // Update cart sidebar
+    function updateCartUI() {
+        const cartContainer = document.getElementById('cartItemsList');
+        const totalSpan = document.getElementById('cartTotal');
+        
+        if (cart.length === 0) {
+            cartContainer.innerHTML = '<div style="color:#aaa; text-align:center; padding:40px;">Your cart is empty</div>';
+            totalSpan.innerText = 'NRS 0';
+            return;
+        }
+        
+        let total = 0;
+        let html = '';
+        cart.forEach((item, index) => {
+            total += item.price;
+            html += `
+                <div class="cart-item">
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-size">Size: ${item.size}</div>
+                        <div class="cart-item-price">NRS ${item.price}</div>
+                    </div>
+                    <button class="remove-item" data-index="${index}">✕ Remove</button>
+                </div>
+            `;
+        });
+        
+        cartContainer.innerHTML = html;
+        totalSpan.innerText = `NRS ${total}`;
+        
+        // Attach remove events
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(btn.getAttribute('data-index'));
+                cart.splice(idx, 1);
+                updateCartUI();
+            });
+        });
+    }
+
+    // Hero jersey slider
+    const jerseysList = [
+        "shsf.jpg",
+      
+    ];
+    let heroIdx = 0;
+    setInterval(() => {
+        heroIdx = (heroIdx + 1) % jerseysList.length;
+        document.getElementById("heroJersey").src = jerseysList[heroIdx];
+    }, 3000);
+    
+    // Cart sidebar toggle
+    function toggleCart() {
+        document.getElementById('cartSidebar').classList.toggle('active');
+    }
+    
+    // Event listeners
+    document.getElementById('cartIcon')?.addEventListener('click', (e) => { e.preventDefault(); toggleCart(); });
+    document.getElementById('closeCartBtn')?.addEventListener('click', toggleCart);
+    document.getElementById('checkoutBtn')?.addEventListener('click', openCheckoutModal);
+    
+    // Mobile menu toggle (optional)
+    document.querySelector('.menu-toggle')?.addEventListener('click', () => {
+        alert('Navigation links: HOME | SHOP | ABOUT US | CONTACT');
+    });
+    function openCheckoutModal() {
+
+    if(cart.length === 0){
+        alert("Your cart is empty!");
+        return;
+    }
+
+    let order = "";
+
+    let total = 0;
+
+    cart.forEach(item => {
+        order += item.name + " | Size: " + item.size + " | NRS " + item.price + "\n";
+        total += item.price;
+    });
+
+    order += "\nTotal: NRS " + total;
+
+    document.getElementById("orderDetails").value = order;
+
+    document.getElementById("checkoutModal").style.display = "flex";
+}
+
+function closeCheckoutModal() {
+    document.getElementById("checkoutModal").style.display = "none";
+}
+    // Initialize
+    renderProductCards();
+</script>
+</body>
+</html>
