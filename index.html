@@ -22,11 +22,10 @@ html {
 }
 
 body {
-    background: #050505;
+    background: #23345f;
     color: white;
     overflow-x: hidden;
 }
-
 /* =========================
 BACKGROUND
 ========================= */
@@ -64,9 +63,18 @@ NAVBAR (unchanged structure)
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     font-size: 1.5rem;
     font-weight: 800;
     color: #FFD700;
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
 }
 
 .nav-links {
@@ -123,9 +131,7 @@ HERO SECTION (refined)
     min-height: 780px;
     position: relative;
 }
-.side-accent {
-    background: linear-gradient(180deg, #FFD700, #FFB800, #8B0000);
-}
+
 
 .hero-content {
     padding: 100px 70px;
@@ -408,7 +414,7 @@ CART SIDEBAR
     right: -450px;
     width: 400px;
     height: 100vh;
-    background: #0a0a0a;
+    background: #23345f;
     z-index: 2000;
     padding: 25px;
     transition: .4s;
@@ -598,7 +604,10 @@ RESPONSIVE
 
 <!-- NAVBAR (exactly as provided) -->
 <nav class="navbar-custom">
-    <div class="logo">ExploreEyeOnline</div>
+    <div class="logo">
+    <img src="logo.png" alt="Logo">
+    <span>ExploreEyeOnline</span>
+</div>
     <div class="nav-links">
         <a href="#">HOME</a>
         <a href="#products">SHOP</a>
@@ -694,10 +703,9 @@ RESPONSIVE
 <h2 style="color:#FFD700;">Checkout</h2>
 
 <form id="orderForm">
-    
 
 <input type="hidden" name="access_key" value="e8b28cdc-94f1-45a2-83cd-170cef628f18">
-<input type="hidden" name="redirect" value="false">
+<input type="hidden" name="subject" value="New ExploreEyeOnline Order">
 <input type="hidden" id="orderDetails" name="message">
 
 <input type="text" name="name" placeholder="Full Name" required style="width:100%;padding:10px;margin:10px 0;">
@@ -759,11 +767,11 @@ Cancel
                 <h3>${prod.name}</h3>
                 <div class="grade-badge">${prod.grade}</div>
                 <div class="price">NRS ${prod.price}</div>
-                <div class="size-title">👕 Kids Sizes</div>
+                <div class="size-title">Kids Sizes</div>
                 <div class="sizes kids-sizes">
                     ${prod.kidsSizes.map(sz => `<span data-size="${sz}">${sz}</span>`).join('')}
                 </div>
-                <div class="size-title">👕 Adult Sizes</div>
+                <div class="size-title">Adult Sizes</div>
                 <div class="sizes adult-sizes">
                     ${prod.adultSizes.map(sz => `<span data-size="${sz}">${sz}</span>`).join('')}
                 </div>
@@ -772,19 +780,31 @@ Cancel
         `).join('');
 
         // A+ Grade
-        aplusContainer.innerHTML = aPlusProducts.map((prod, idx) => `
-            <div class="product-card" data-product-idx="a${idx}" data-product-name="${prod.name}" data-price="${prod.price}">
-                <img src="${prod.img}" alt="${prod.name}">
-                <h3>${prod.name}</h3>
-                <div class="grade-badge">${prod.grade}</div>
-                <div class="price">NRS ${prod.price}</div>
-                <div class="size-title">Select Size</div>
-                <div class="sizes">
-                    ${prod.sizes.map(sz => `<span data-size="${sz}">${sz}</span>`).join('')}
-                </div>
-                <button class="cart-button add-to-cart">Add To Cart</button>
-            </div>
-        `).join('');
+       aplusContainer.innerHTML = aPlusProducts.map((prod, idx) => `
+    <div class="product-card" data-product-idx="a${idx}" data-product-name="${prod.name}" data-price="${prod.price}">
+        <img src="${prod.img}" alt="${prod.name}">
+        <h3>${prod.name}</h3>
+        <div class="grade-badge">${prod.grade}</div>
+        <div class="price">NRS ${prod.price}</div>
+
+        <div class="size-title">Kids Sizes</div>
+        <div class="sizes kids-sizes">
+            <span data-size="S">S</span>
+            <span data-size="M">M</span>
+            <span data-size="L">L</span>
+        </div>
+
+        <div class="size-title">Adult Sizes</div>
+        <div class="sizes adult-sizes">
+            <span data-size="S">S</span>
+            <span data-size="M">M</span>
+            <span data-size="L">L</span>
+            <span data-size="XL">XL</span>
+        </div>
+
+        <button class="cart-button add-to-cart">Add To Cart</button>
+    </div>
+`).join('');
 
         // Attach size selection & cart events
         attachSizeSelectionEvents();
@@ -941,46 +961,38 @@ Cancel
 function closeCheckoutModal() {
     document.getElementById("checkoutModal").style.display = "none";
 }
-document.getElementById("orderForm").addEventListener("submit", async function(e) {
+document.getElementById("orderForm").addEventListener("submit", async function(e){
 
     e.preventDefault();
 
     const formData = new FormData(this);
 
-    try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+    });
 
-        const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            body: formData
-        });
+    const result = await response.json();
 
-        const result = await response.json();
+    if(result.success){
 
-        if(result.success) {
+        alert("✅ Order placed successfully!");
 
-            alert("✅ Order placed successfully!");
+        this.reset();
 
-            closeCheckoutModal();
+        cart = [];
+        updateCartUI();
 
-            cart = [];
+        closeCheckoutModal();
 
-            updateCartUI();
+    } else {
 
-            this.reset();
-
-        } else {
-
-            alert("❌ Failed to submit order.");
-
-        }
-
-    } catch(error) {
-
-        alert("❌ Network error.");
+        alert("❌ Failed to send order");
+        console.log(result);
 
     }
-
 });
+
     // Initialize
     renderProductCards();
 </script>
