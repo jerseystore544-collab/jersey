@@ -693,10 +693,11 @@ RESPONSIVE
 
 <h2 style="color:#FFD700;">Checkout</h2>
 
-<form action="https://api.web3forms.com/submit" method="POST">
+<form id="orderForm">
+    
 
 <input type="hidden" name="access_key" value="e8b28cdc-94f1-45a2-83cd-170cef628f18">
-
+<input type="hidden" name="redirect" value="false">
 <input type="hidden" id="orderDetails" name="message">
 
 <input type="text" name="name" placeholder="Full Name" required style="width:100%;padding:10px;margin:10px 0;">
@@ -940,6 +941,46 @@ Cancel
 function closeCheckoutModal() {
     document.getElementById("checkoutModal").style.display = "none";
 }
+document.getElementById("orderForm").addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    try {
+
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if(result.success) {
+
+            alert("✅ Order placed successfully!");
+
+            closeCheckoutModal();
+
+            cart = [];
+
+            updateCartUI();
+
+            this.reset();
+
+        } else {
+
+            alert("❌ Failed to submit order.");
+
+        }
+
+    } catch(error) {
+
+        alert("❌ Network error.");
+
+    }
+
+});
     // Initialize
     renderProductCards();
 </script>
