@@ -522,6 +522,95 @@ CART SIDEBAR
     background: #ffed4a;
     transform: translateY(-2px);
 }
+/* =========================
+FLAPPY FOOTBALL
+========================= */
+
+.game-section{
+    padding:80px 8%;
+}
+
+.game-container{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,215,0,.2);
+    border-radius:30px;
+    padding:30px;
+    text-align:center;
+}
+
+.game-title{
+    color:#FFD700;
+    font-size:3rem;
+    font-weight:800;
+    margin-bottom:15px;
+}
+
+.game-subtitle{
+    color:#ddd;
+    margin-bottom:20px;
+}
+.game-controls{
+    margin-top:20px;
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.game-controls button{
+    background:#FFD700;
+    color:#000;
+    border:none;
+    padding:15px 30px;
+    border-radius:50px;
+    font-weight:700;
+    cursor:pointer;
+    font-size:1rem;
+}
+
+.game-controls button:hover{
+    transform:translateY(-2px);
+}
+
+#retryBtn{
+    background:#ff6b6b;
+    color:white;
+}
+
+#scoreDisplay{
+    font-size:1.5rem;
+    color:#FFD700;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+#gameCanvas{
+    width:100%;
+    max-width:700px;
+    height:400px;
+    background:#1c2d55;
+    border:3px solid #FFD700;
+    border-radius:20px;
+}
+#gameCanvas{
+    width:100%;
+    max-width:700px;
+    height:auto;
+    aspect-ratio:7/4;
+    touch-action:none;
+}
+
+@media(max-width:768px){
+
+.game-title{
+    font-size:2rem;
+}
+
+#gameCanvas{
+    height:300px;
+}
+
+}
 
 /* =========================
 FOOTER
@@ -638,7 +727,43 @@ RESPONSIVE
         </div>
     </div>
 </section>
+<section class="game-section">
 
+<div class="game-container">
+
+<h2 class="game-title">
+FLAPPY FOOTBALL CHALLENGE
+</h2>
+
+<p class="game-subtitle">
+Reach 25 Points To Unlock Rs.100 Discount
+</p>
+
+<div id="scoreDisplay">
+Score: 0
+</div>
+
+<canvas
+id="gameCanvas"
+width="700"
+height="400">
+</canvas>
+
+<div class="game-controls">
+
+<button id="jumpBtn">
+JUMP
+</button>
+
+<button id="retryBtn" style="display:none;">
+START
+</button>
+
+</div>
+
+</div>
+
+</section>
 <!-- ABOUT SECTION -->
 <section id="about" class="about">
     <h2 class="section-title">Why ExploreEyeOnline?</h2>
@@ -786,6 +911,9 @@ Cancel
 
     // Cart array: { id, name, size, price }
     let cart = [];
+
+const footballImg = new Image();
+footballImg.src = "football.png";
 
     // Helper: render products
     function renderProductCards() {
@@ -941,8 +1069,120 @@ Cancel
             });
         });
     }
+/* =========================
+FLAPPY FOOTBALL GAME
+========================= */
 
-    // Hero jersey slider
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+let ballY = 120;
+let velocity = 0;
+const gravity = 0.4;
+const jump = -7;
+
+let score = 0;
+let gameOver = false;
+const pipes = [];
+
+function createPipe(){
+    if(gameOver) return;
+    pipes.push({
+        x: canvas.width,
+        gapY: Math.random()*180+60,
+        width:70,
+        gap:140,
+        scored:false
+    });
+}
+
+setInterval(createPipe,2000);
+
+function flap(){
+    if(gameOver) return;
+    velocity = jump;
+}
+
+function restartGame(){
+    score = 0;
+    ballY = 120;
+    velocity = 0;
+    pipes.length = 0;
+    gameOver = false;
+
+    document.getElementById("retryBtn").style.display = "none";
+    document.getElementById("scoreDisplay").innerHTML = "Score: 0";
+
+    gameLoop();
+}
+
+function showGameOver(){
+    document.getElementById("retryBtn").style.display = "inline-block";
+
+    ctx.fillStyle="rgba(0,0,0,.8)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="#FFD700";
+    ctx.textAlign="center";
+    ctx.font="bold 40px Arial";
+    ctx.fillText("GAME OVER",canvas.width/2,160);
+
+    ctx.font="24px Arial";
+    ctx.fillText("Score: "+score,canvas.width/2,220);
+}
+
+function gameLoop(){
+
+    if(gameOver) return;
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    velocity += gravity;
+    ballY += velocity;
+
+    if(ballY < 0) ballY = 0;
+
+    if(ballY > canvas.height-50){
+        gameOver = true;
+        showGameOver();
+        return;
+    }
+
+    ctx.drawImage(footballImg,100,ballY,50,50);
+
+    for(let i=0;i<pipes.length;i++){
+
+        let p = pipes[i];
+        p.x -= 3;
+
+        ctx.fillStyle="#FFD700";
+        ctx.fillRect(p.x,0,p.width,p.gapY);
+        ctx.fillRect(p.x,p.gapY+p.gap,p.width,canvas.height);
+
+        if(150 > p.x && 100 < p.x+p.width){
+            if(ballY < p.gapY || ballY+50 > p.gapY+p.gap){
+                gameOver = true;
+                showGameOver();
+                return;
+            }
+        }
+
+        if(!p.scored && p.x < 100){
+            p.scored = true;
+            score++;
+            document.getElementById("scoreDisplay").innerHTML = "Score: " + score;
+        }
+    }
+
+    requestAnimationFrame(gameLoop);
+}
+
+document.getElementById("jumpBtn").addEventListener("click", flap);
+document.getElementById("retryBtn").addEventListener("click", restartGame);
+
+gameLoop();
+
+// Hero jersey slider
     const jerseysList = [
     "shsf.JPG",
 ];
