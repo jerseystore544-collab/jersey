@@ -611,6 +611,43 @@ FLAPPY FOOTBALL
 }
 
 }
+.countdown-section{
+    text-align:center;
+    padding:80px 20px;
+}
+
+.countdown-section h2{
+    color:#FFD700;
+    font-size:2.8rem;
+    font-weight:800;
+    margin-bottom:30px;
+}
+
+.countdown-box{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.countdown-box div{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,215,0,.3);
+    border-radius:20px;
+    padding:25px;
+    min-width:120px;
+}
+
+.countdown-box span{
+    display:block;
+    font-size:2.5rem;
+    font-weight:800;
+    color:#FFD700;
+}
+
+.countdown-box small{
+    color:#ddd;
+}
 
 /* =========================
 FOOTER
@@ -710,6 +747,7 @@ RESPONSIVE
     <div class="menu-toggle"><i class="fas fa-bars"></i></div>
 </nav>
 
+
 <!-- HERO SECTION -->
 <section class="hero">
     <div class="hero-wrapper">
@@ -724,6 +762,32 @@ RESPONSIVE
         </div>
         <div class="hero-image">
             <img id="heroJersey" src="shsf.JPG" alt="Jersey">
+        </div>
+    </div>
+    
+</section>
+<section class="countdown-section">
+    <h2>FIFA World Cup 2026 Starts In</h2>
+
+    <div class="countdown-box">
+        <div>
+            <span id="days">0</span>
+            <small>Days</small>
+        </div>
+
+        <div>
+            <span id="hours">0</span>
+            <small>Hours</small>
+        </div>
+
+        <div>
+            <span id="minutes">0</span>
+            <small>Minutes</small>
+        </div>
+
+        <div>
+            <span id="seconds">0</span>
+            <small>Seconds</small>
         </div>
     </div>
 </section>
@@ -764,6 +828,7 @@ START
 </div>
 
 </section>
+
 <!-- ABOUT SECTION -->
 <section id="about" class="about">
     <h2 class="section-title">Why ExploreEyeOnline?</h2>
@@ -1263,6 +1328,24 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
 
     }
 });
+const worldCupDate = new Date("2026-06-11T20:00:00Z").getTime();
+
+setInterval(() => {
+
+    const now = new Date().getTime();
+    const distance = worldCupDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+
+}, 1000);
 
     // Initialize
     renderProductCards();
